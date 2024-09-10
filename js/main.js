@@ -42,6 +42,44 @@ if (isNaN(cantidadCalificaciones) || cantidadCalificaciones <= 0) {
         alert("Reprobaste con un promedio de: " + promedio.toFixed(2));
     }
 
-    // Mostrar el promedio en la consola
-    console.log("El promedio calculado es: " + promedio.toFixed(2));
+    // Mostrar el promedio con alert
+    alert("El promedio calculado es: " + promedio.toFixed(2));
 }
+
+// Array de obejetos. Plan de estudio
+
+let materias = [
+    { nombre: "Matemática", horario: "17:00 hs" },
+    { nombre: "Inglés", horario: "18:00 hs" },
+    { nombre: "Literatura", horario: "15:30 hs" },
+    { nombre: "Informática", horario: "17:30 hs" },
+    { nombre: "Psicología", horario: "16:00 hs" },
+    { nombre: "Biología", horario: "15:00 hs" },
+    { nombre: "Música", horario: "16:30 hs" },
+    { nombre: "Ciencia y Tecnología", horario: "13:00 hs" },
+    { nombre: "Educación Física", horario: "14:00 hs" }
+];
+
+
+
+// Mostrar Plan de estudios. 
+
+let planDeEstudio = materias.map(materias => materias.nombre).join("\n");
+
+alert("Las materias dentro del plan de estudio son:\n" + planDeEstudio);
+
+alert("La cantidad de materias en el plan de estudio es: " + materias.length);
+
+
+// Consultar el horario de una materia 
+
+let consultaHorario = prompt("De que materia quieres saber el horario?");
+
+let materiaHorario = materias.find(materia => materia.nombre.toLowerCase() === consultaHorario.toLowerCase());
+
+if (materiaHorario) {
+    alert("La materia " + materiaHorario.nombre + " se dicta a las: " + materiaHorario.horario);
+} else {
+    alert("La materia que consultaste no está en el plan de estudios.");
+}
+
