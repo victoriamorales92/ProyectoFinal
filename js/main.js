@@ -46,18 +46,26 @@ if (isNaN(cantidadCalificaciones) || cantidadCalificaciones <= 0) {
     alert("El promedio calculado es: " + promedio.toFixed(2));
 }
 
-// Array de obejetos. Plan de estudio
+// Clase Materia
+class Materia {
+    constructor(nombre, horario) {
+        this.nombre = nombre;
+        this.horario = horario;
+    }
+}
 
+
+// Array de objetos (plan de estudios) utilizando la clase Materia
 let materias = [
-    { nombre: "Matemática", horario: "17:00 hs" },
-    { nombre: "Inglés", horario: "18:00 hs" },
-    { nombre: "Literatura", horario: "15:30 hs" },
-    { nombre: "Informática", horario: "17:30 hs" },
-    { nombre: "Psicología", horario: "16:00 hs" },
-    { nombre: "Biología", horario: "15:00 hs" },
-    { nombre: "Música", horario: "16:30 hs" },
-    { nombre: "Ciencia y Tecnología", horario: "13:00 hs" },
-    { nombre: "Educación Física", horario: "14:00 hs" }
+    new Materia("Matemática", "17:00 hs"),
+    new Materia("Inglés", "18:00 hs"),
+    new Materia("Literatura", "15:30 hs"),
+    new Materia("Informática", "17:30 hs"),
+    new Materia("Psicología", "16:00 hs"),
+    new Materia("Biología", "15:00 hs"),
+    new Materia("Música", "16:30 hs"),
+    new Materia("Ciencia y Tecnología", "13:00 hs"),
+    new Materia("Educación Física", "14:00 hs")
 ];
 
 
@@ -68,7 +76,7 @@ let planDeEstudio = materias.map(materias => materias.nombre).join("\n");
 
 alert("Las materias dentro del plan de estudio son:\n" + planDeEstudio);
 
-alert("La cantidad de materias en el plan de estudio es: " + materias.length);
+alert("El plan de estduios cuenta con  " + materias.length + " materias.");
 
 
 // Consultar el horario de una materia 
