@@ -76,7 +76,7 @@ let planDeEstudio = materias.map(materias => materias.nombre).join("\n");
 
 alert("Las materias dentro del plan de estudio son:\n" + planDeEstudio);
 
-alert("El plan de estduios cuenta con  " + materias.length + " materias.");
+alert("El plan de estudios cuenta con  " + materias.length + " materias.");
 
 
 // Consultar el horario de una materia 
