@@ -133,25 +133,30 @@ const carritoProductos = document.querySelector("#carrito-productos");
 let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
 // Función para actualizar el contador del carrito
+
 function actualizarContadorCarrito() {
     const contadorCarrito = document.querySelector('.numero'); 
     contadorCarrito.textContent = carrito.length;
 }
 
 // Función para agregar productos al carrito
+
 function agregarAlCarrito(idProducto) {
     const producto = productos.find(p => p.id === idProducto);
     carrito.push(producto);
 
     // Guardar en localStorage
+
     localStorage.setItem('carrito', JSON.stringify(carrito));
 
     // Actualizar el contador del carrito
+
     actualizarContadorCarrito();
-    mostrarProductosEnCarrito(); // Actualizar la vista del carrito
+    mostrarProductosEnCarrito(); 
 }
 
 // Función para quitar productos del carrito
+
 function quitarDelCarrito(index) {
     carrito.splice(index, 1);
     localStorage.setItem('carrito', JSON.stringify(carrito));
@@ -160,6 +165,7 @@ function quitarDelCarrito(index) {
 }
 
 // Función para vaciar el carrito
+
 function vaciarCarrito() {
     carrito = [];
     localStorage.setItem('carrito', JSON.stringify(carrito));
@@ -168,6 +174,7 @@ function vaciarCarrito() {
 }
 
 // Función para mostrar productos filtrados por categoría
+
 function mostrarProductos(categoriaId = "") {
     catalogoProductos.innerHTML = ""; // Limpiar el contenedor antes de agregar nuevos productos
 
@@ -176,6 +183,7 @@ function mostrarProductos(categoriaId = "") {
         : productos;
 
     // Agregar productos al DOM
+
     productosFiltrados.forEach(producto => {
         let div = document.createElement("div");
         div.classList.add("card-inicio");
@@ -192,6 +200,7 @@ function mostrarProductos(categoriaId = "") {
     });
 
     // Añadir evento a cada botón de agregar al carrito
+
     document.querySelectorAll('.btn-agregar').forEach(button => {
         button.addEventListener('click', function() {
             agregarAlCarrito(this.id);
@@ -200,8 +209,9 @@ function mostrarProductos(categoriaId = "") {
 }
 
 // Función para mostrar productos en el carrito y calcular total
+
 function mostrarProductosEnCarrito() {
-    carritoProductos.innerHTML = ""; // Limpiar el carrito
+    carritoProductos.innerHTML = ""; 
 
     if (carrito.length === 0) {
         carritoProductos.innerHTML = "<p>Tu carrito está vacío</p>";
@@ -218,6 +228,7 @@ function mostrarProductosEnCarrito() {
         });
 
         // Añadir evento para quitar productos
+
         document.querySelectorAll('.btn-quitar').forEach(button => {
             button.addEventListener('click', function() {
                 const index = this.getAttribute('data-index');
@@ -230,7 +241,8 @@ function mostrarProductosEnCarrito() {
     totalCarrito.textContent = total.toLocaleString('es-AR');
     
 
-    // Añadir botones adicionales (seguir comprando y vaciar carrito)
+    // botones seguir comprando y vaciar carrito
+
     agregarBotonesCarrito();
 }
 
@@ -252,36 +264,40 @@ function agregarBotonesCarrito() {
 }
 
 // Función para cerrar el carrito 
+
 function cerrarCarritoFunc() {
     document.querySelector("#carrito-desplegable").classList.remove("activo");
 }
 
 // Mostrar todos los productos al cargar la página
+
 mostrarProductos();
 
 // función para mostrar los productos por categoria
+
 todos.addEventListener("click", (e) => {
-    e.preventDefault(); // Evitar que el enlace recargue la página
+    e.preventDefault(); 
     mostrarProductos(); // Mostrar todos los productos
 });
 
 fragancias.addEventListener("click", (e) => {
     e.preventDefault();
-    mostrarProductos("fragancias"); // Mostrar solo fragancias
+    mostrarProductos("fragancias"); // fragancias
 });
 
 protectores.addEventListener("click", (e) => {
     e.preventDefault();
-    mostrarProductos("protectores"); // Mostrar solo protectores
+    mostrarProductos("protectores"); // protectores
 });
 
 serums.addEventListener("click", (e) => {
     e.preventDefault();
-    mostrarProductos("serums"); // Mostrar solo serums
+    mostrarProductos("serums"); // solo serums
 });
 
-// Inicializar el contador del carrito y mostrar productos al cargar la página
+// Inicializar el contador del carrito 
+
 document.addEventListener('DOMContentLoaded', () => {
     actualizarContadorCarrito();
-    mostrarProductosEnCarrito(); // Mostrar los productos del carrito en su vista correspondiente
+    mostrarProductosEnCarrito(); // 
 });
