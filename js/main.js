@@ -1,93 +1,287 @@
-// Simulador de promedios 
-//Función para calcular el promedio de calificaciones
-function calcularPromedio(cantidadCalificaciones) {
-    let sumaCalificaciones = 0;
-
-    for (let i = 1; i <= cantidadCalificaciones; i++) {
-        let calificacion = parseFloat(prompt("Ingresa la calificación " + i + ":"));
-
-        // Validación de la calificación
-        while (isNaN(calificacion) || calificacion < 0 || calificacion > 10) {
-            alert("Solo puedes ingresar números entre 0 y 10. Inténtalo de nuevo.");
-            calificacion = parseFloat(prompt("Ingresa la calificación " + i + ":"));
-        }
-
-        sumaCalificaciones += calificacion;
+const productos = [
+    {
+        id: "fragancia-01",
+        titulo: "Fragancia Alejandro Sanz 50 ml",
+        imagen: "./assets/alesaenz.png",
+        categoria: {
+            nombre: "Fragancias",
+            id: "fragancias"
+        },
+        precio: 45052
+    },
+    {
+        id: "fragancia-02",
+        titulo: "Fragancia Antonio Banderas 100 ml",
+        imagen: "./assets/antoniob.png",
+        categoria: {
+            nombre: "Fragancias",
+            id: "fragancias"
+        },
+        precio: 49873
+    },
+    {
+        id: "fragancia-03",
+        titulo: "Fragancia Aqua di Gio",
+        imagen: "./assets/aquadiogio.png",
+        categoria: {
+            nombre: "Fragancias",
+            id: "fragancias"
+        },
+        precio: 54055
+    },
+    {
+        id: "fragancia-04",
+        titulo: "Fragancia Cher gift 50ml",
+        imagen: "./assets/cherRegalo.png",
+        categoria: {
+            nombre: "Fragancias",
+            id: "fragancias"
+        },
+        precio: 41606
+    },
+    {
+        id: "protector-01",
+        titulo: "Protector Solar Isdin FPS 99",
+        imagen: "./assets/isdin99.png",
+        categoria: {
+            nombre: "Protectores Solares",
+            id: "protectores"
+        },
+        precio: 21606
+    },
+    {
+        id: "protector-02",
+        titulo: "Protector Solar Isdin FPS 50",
+        imagen: "./assets/isdintres.png",
+        categoria: {
+            nombre: "Protectores Solares",
+            id: "protectores"
+        },
+        precio: 23606
+    },
+    {
+        id: "protector-03",
+        titulo: "Protector solar Isdin pediátrico",
+        imagen: "./assets/larocche.png",
+        categoria: {
+            nombre: "Protectores Solares",
+            id: "protectores"
+        },
+        precio: 41606
+    },
+    {
+        id: "protector-04",
+        titulo: "Protector solar Eucerin FPS 50",
+        imagen: "./assets/protectorsolar.png",
+        categoria: {
+            nombre: "Protectores Solares",
+            id: "protectores"
+        },
+        precio: 41606
+    },
+    {
+        id: "serum-01",
+        titulo: "Serum Niacinamida LRP",
+        imagen: "./assets/nicinamida.png",
+        categoria: {
+            nombre: "Serums",
+            id: "serums"
+        },
+        precio: 71606
+    },
+    {
+        id: "serum-02",
+        titulo: "Serum Acnique",
+        imagen: "./assets/cepage.png",
+        categoria: {
+            nombre: "Serums",
+            id: "serums"
+        },
+        precio: 41606
+    },
+    {
+        id: "serum-03",
+        titulo: "Serum Antipigmento",
+        imagen: "./assets/serum.png",
+        categoria: {
+            nombre: "Serums",
+            id: "serums"
+        },
+        precio: 41606
+    },
+    {
+        id: "serum-04",
+        titulo: "Serum Mineral 89",
+        imagen: "./assets/vichy.png",
+        categoria: {
+            nombre: "Serums",
+            id: "serums"
+        },
+        precio: 41606
     }
-
-    // Calcular el promedio
-    let promedio = sumaCalificaciones / cantidadCalificaciones;
-    return Math.round(promedio * 10) / 10;
-}
-
-
-alert("¡Vamos a calcular tu promedio de calificaciones!");
-
-let cantidadCalificaciones = parseInt(prompt("¿Cuántas calificaciones quieres ingresar?"));
-
-if (isNaN(cantidadCalificaciones) || cantidadCalificaciones <= 0) {
-    alert("Por favor, ingresa un número válido para la cantidad de calificaciones.");
-} else {
-    // Llamamos a la función para calcular el promedio
-    let promedio = calcularPromedio(cantidadCalificaciones);
-
-    // Mostrar el resultado basado en el promedio
-    if (promedio >= 9) {
-        alert("¡Excelente! Aprobaste con un promedio sobresaliente de: " + promedio.toFixed(2));
-    } else if (promedio >= 7 && promedio < 9) {
-        alert("Aprobaste con un buen promedio de: " + promedio.toFixed(2));
-    } else if (promedio >= 5 && promedio < 7) {
-        alert("No aprobaste, pero estuviste cerca. Tu promedio es: " + promedio.toFixed(2));
-    } else {
-        alert("Reprobaste con un promedio de: " + promedio.toFixed(2));
-    }
-
-    // Mostrar el promedio con alert
-    alert("El promedio calculado es: " + promedio.toFixed(2));
-}
-
-// Clase Materia
-class Materia {
-    constructor(nombre, horario) {
-        this.nombre = nombre;
-        this.horario = horario;
-    }
-}
-
-
-// Array de objetos (plan de estudios) utilizando la clase Materia
-let materias = [
-    new Materia("Matemática", "17:00 hs"),
-    new Materia("Inglés", "18:00 hs"),
-    new Materia("Literatura", "15:30 hs"),
-    new Materia("Informática", "17:30 hs"),
-    new Materia("Psicología", "16:00 hs"),
-    new Materia("Biología", "15:00 hs"),
-    new Materia("Música", "16:30 hs"),
-    new Materia("Ciencia y Tecnología", "13:00 hs"),
-    new Materia("Educación Física", "14:00 hs")
 ];
 
 
+//  DOM
+const catalogoProductos = document.querySelector("#catalogo-productos");
+const todos = document.querySelector("#todos");
+const fragancias = document.querySelector("#fragancias");
+const protectores = document.querySelector("#protectores");
+const serums = document.querySelector("#serums");
+const totalCarrito = document.querySelector("#total");
+const carritoProductos = document.querySelector("#carrito-productos");
+let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
-// Mostrar Plan de estudios. 
-
-let planDeEstudio = materias.map(materias => materias.nombre).join("\n");
-
-alert("Las materias dentro del plan de estudio son:\n" + planDeEstudio);
-
-alert("El plan de estudios cuenta con  " + materias.length + " materias.");
-
-
-// Consultar el horario de una materia 
-
-let consultaHorario = prompt("De que materia quieres saber el horario?");
-
-let materiaHorario = materias.find(materia => materia.nombre.toLowerCase() === consultaHorario.toLowerCase());
-
-if (materiaHorario) {
-    alert("La materia " + materiaHorario.nombre + " se dicta a las: " + materiaHorario.horario);
-} else {
-    alert("La materia que consultaste no está en el plan de estudios.");
+// Función para actualizar el contador del carrito
+function actualizarContadorCarrito() {
+    const contadorCarrito = document.querySelector('.numero'); 
+    contadorCarrito.textContent = carrito.length;
 }
 
+// Función para agregar productos al carrito
+function agregarAlCarrito(idProducto) {
+    const producto = productos.find(p => p.id === idProducto);
+    carrito.push(producto);
+
+    // Guardar en localStorage
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+
+    // Actualizar el contador del carrito
+    actualizarContadorCarrito();
+    mostrarProductosEnCarrito(); // Actualizar la vista del carrito
+}
+
+// Función para quitar productos del carrito
+function quitarDelCarrito(index) {
+    carrito.splice(index, 1);
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+    mostrarProductosEnCarrito();
+    actualizarContadorCarrito();
+}
+
+// Función para vaciar el carrito
+function vaciarCarrito() {
+    carrito = [];
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+    mostrarProductosEnCarrito();
+    actualizarContadorCarrito();
+}
+
+// Función para mostrar productos filtrados por categoría
+function mostrarProductos(categoriaId = "") {
+    catalogoProductos.innerHTML = ""; // Limpiar el contenedor antes de agregar nuevos productos
+
+    const productosFiltrados = categoriaId
+        ? productos.filter(producto => producto.categoria.id === categoriaId)
+        : productos;
+
+    // Agregar productos al DOM
+    productosFiltrados.forEach(producto => {
+        let div = document.createElement("div");
+        div.classList.add("card-inicio");
+        div.innerHTML = `
+        <img src="${producto.imagen}" alt="${producto.titulo}">
+        <div class="card-content">
+            <h2>${producto.titulo}</h2>
+            <p>$${producto.precio}</p>
+            <button class="btn-agregar" id="${producto.id}">Agregar al carrito</button>
+        </div>
+        `;
+
+        catalogoProductos.append(div);
+    });
+
+    // Añadir evento a cada botón de agregar al carrito
+    document.querySelectorAll('.btn-agregar').forEach(button => {
+        button.addEventListener('click', function() {
+            agregarAlCarrito(this.id);
+        });
+    });
+}
+
+// Función para mostrar productos en el carrito y calcular total
+function mostrarProductosEnCarrito() {
+    carritoProductos.innerHTML = ""; // Limpiar el carrito
+
+    if (carrito.length === 0) {
+        carritoProductos.innerHTML = "<p>Tu carrito está vacío</p>";
+    } else {
+        carrito.forEach((producto, index) => {
+            const div = document.createElement("div");
+            div.classList.add("producto-carrito");
+            div.innerHTML = `
+                <p>${producto.titulo}</p>
+                <p>$${producto.precio}</p>
+                <button class="btn-quitar" data-index="${index}">Quitar</button>
+            `;
+            carritoProductos.appendChild(div);
+        });
+
+        // Añadir evento para quitar productos
+        document.querySelectorAll('.btn-quitar').forEach(button => {
+            button.addEventListener('click', function() {
+                const index = this.getAttribute('data-index');
+                quitarDelCarrito(index); // Quitar producto al hacer clic
+            });
+        });
+    }
+
+    const total = carrito.reduce((sum, producto) => sum + producto.precio, 0);
+    totalCarrito.textContent = total.toLocaleString('es-AR');
+    
+
+    // Añadir botones adicionales (seguir comprando y vaciar carrito)
+    agregarBotonesCarrito();
+}
+
+// Función para agregar botones de "Seguir Comprando" y "Vaciar Carrito"
+function agregarBotonesCarrito() {
+    const botonSeguirComprando = document.createElement("button");
+    botonSeguirComprando.textContent = "Seguir Comprando";
+    botonSeguirComprando.classList.add("btn-seguir-comprando");
+    carritoProductos.appendChild(botonSeguirComprando);
+    botonSeguirComprando.addEventListener("click", cerrarCarritoFunc);
+
+    if (carrito.length > 0) {
+        const botonVaciarCarrito = document.createElement("button");
+        botonVaciarCarrito.textContent = "Vaciar Carrito";
+        botonVaciarCarrito.classList.add("btn-vaciar");
+        carritoProductos.appendChild(botonVaciarCarrito);
+        botonVaciarCarrito.addEventListener("click", vaciarCarrito);
+    }
+}
+
+// Función para cerrar el carrito 
+function cerrarCarritoFunc() {
+    document.querySelector("#carrito-desplegable").classList.remove("activo");
+}
+
+// Mostrar todos los productos al cargar la página
+mostrarProductos();
+
+// función para mostrar los productos por categoria
+todos.addEventListener("click", (e) => {
+    e.preventDefault(); // Evitar que el enlace recargue la página
+    mostrarProductos(); // Mostrar todos los productos
+});
+
+fragancias.addEventListener("click", (e) => {
+    e.preventDefault();
+    mostrarProductos("fragancias"); // Mostrar solo fragancias
+});
+
+protectores.addEventListener("click", (e) => {
+    e.preventDefault();
+    mostrarProductos("protectores"); // Mostrar solo protectores
+});
+
+serums.addEventListener("click", (e) => {
+    e.preventDefault();
+    mostrarProductos("serums"); // Mostrar solo serums
+});
+
+// Inicializar el contador del carrito y mostrar productos al cargar la página
+document.addEventListener('DOMContentLoaded', () => {
+    actualizarContadorCarrito();
+    mostrarProductosEnCarrito(); // Mostrar los productos del carrito en su vista correspondiente
+});
