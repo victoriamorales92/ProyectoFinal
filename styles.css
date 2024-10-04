@@ -213,7 +213,7 @@ img {
 }
 .cantidad {
     text-align: center; 
-    margin-top: 5px; /* Añadir un pequeño margen superior */
+    margin-top: 5px; 
 }
 
 .cantidad p {
@@ -318,16 +318,15 @@ img {
 
 /* Estilos para el botón de comprar */
 .btn-comprar {
-    background-color: #0d0e0d; /* Mismo color oscuro que ya estás usando */
-    color: white; /* Texto en blanco */
-    border: none;
+    background-color: #0d0e0d; 
+    color: white; 
     padding: 10px 15px;
     font-size: 1rem;
     cursor: pointer;
-    border-radius: 5px; /* Bordes redondeados */
-    width: 100%; /* Ocupa todo el ancho del contenedor */
-    margin-top: 20px; /* Separación superior */
-    transition: background-color 0.3s ease; /* Transición suave para hover */
+    border-radius: 5px; 
+    width: 100%; 
+    margin-top: 20px; 
+    transition: background-color 0.3s ease; 
 }
 
 /* Efecto hover para el botón "Comprar" */
@@ -343,41 +342,41 @@ img {
 
 
 .toastify-custom {
-    background-color: white !important; /* Fondo blanco */
-    color: black !important; /* Letras negras */
-    border: 2px solid black !important; /* Bordes negros */
-    font-size: 1rem !important; /* Tamaño del texto */
-    padding: 10px 20px !important; /* Espacio dentro del toast */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important; /* Sombra leve */
-    text-align: center !important; /* Centrar el texto */
+    background-color: white !important; 
+    color: black !important;
+    border: 2px solid black !important;
+    font-size: 1rem !important; 
+    padding: 10px 20px !important; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+    text-align: center !important; 
 }
 
 
 /* Estilos para el footer */
 footer {
-    background-color: #111; /* Fondo oscuro elegante */
-    color: #fff; /* Texto en blanco para contraste */
-    text-align: center; /* Centrar el texto */
-    padding: 20px 0; /* Espaciado arriba y abajo */
-    font-size: 0.9rem; /* Tamaño de fuente más pequeño para un estilo fino */
-    letter-spacing: 1px; /* Espaciado entre letras para elegancia */
-    border-top: 1px solid #444; /* Ligeramente delineado en la parte superior */
-    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil para elevar el footer */
-    margin-top: 50px; /* Separación del resto de la página */
+    background-color: #111; 
+    color: #fff; 
+    text-align: center; 
+    padding: 20px 0; 
+    font-size: 0.9rem; 
+    letter-spacing: 1px; 
+    border-top: 1px solid #444; 
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); 
+    margin-top: 50px; 
 }
 
 footer p {
-    margin: 0; /* Sin márgenes adicionales */
-    font-weight: 300; /* Peso de fuente ligero para un aspecto más elegante */
-}
+    margin: 0; /
+    font-weight: 300; 
 
 footer a {
-    color: #ffffff; /* Color de enlaces */
-    text-decoration: none; /* Quitar subrayado de los enlaces */
-    font-weight: 400; /* Peso de fuente medio */
-    transition: color 0.3s ease; /* Transición suave al pasar el mouse */
+    color: #ffffff; 
+    text-decoration: none; 
+    font-weight: 400; 
+    transition: color 0.3s ease; 
 }
 
 footer a:hover {
-    color: #ccc; /* Cambia el color en hover para un toque más elegante */
+    color: #ccc; 
 }
+
