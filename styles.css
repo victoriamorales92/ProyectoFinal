@@ -353,3 +353,31 @@ img {
 }
 
 
+/* Estilos para el footer */
+footer {
+    background-color: #111; /* Fondo oscuro elegante */
+    color: #fff; /* Texto en blanco para contraste */
+    text-align: center; /* Centrar el texto */
+    padding: 20px 0; /* Espaciado arriba y abajo */
+    font-size: 0.9rem; /* Tamaño de fuente más pequeño para un estilo fino */
+    letter-spacing: 1px; /* Espaciado entre letras para elegancia */
+    border-top: 1px solid #444; /* Ligeramente delineado en la parte superior */
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil para elevar el footer */
+    margin-top: 50px; /* Separación del resto de la página */
+}
+
+footer p {
+    margin: 0; /* Sin márgenes adicionales */
+    font-weight: 300; /* Peso de fuente ligero para un aspecto más elegante */
+}
+
+footer a {
+    color: #ffffff; /* Color de enlaces */
+    text-decoration: none; /* Quitar subrayado de los enlaces */
+    font-weight: 400; /* Peso de fuente medio */
+    transition: color 0.3s ease; /* Transición suave al pasar el mouse */
+}
+
+footer a:hover {
+    color: #ccc; /* Cambia el color en hover para un toque más elegante */
+}
