@@ -1,0 +1,122 @@
+[
+    {
+        "id": "fragancia-01",
+        "titulo": "Fragancia Alejandro Sanz 50 ml",
+        "imagen": "./assets/alesaenz.png",
+        "categoria": {
+            "nombre": "Fragancias",
+            "id": "fragancias"
+        },
+        "precio": 45052
+    },
+    {
+        "id": "fragancia-02",
+        "titulo": "Fragancia Antonio Banderas 100 ml",
+        "imagen": "./assets/antoniob.png",
+        "categoria": {
+            "nombre": "Fragancias",
+            "id": "fragancias"
+        },
+        "precio": 49873
+    },
+    {
+        "id": "fragancia-03",
+        "titulo": "Fragancia Aqua di Gio",
+        "imagen": "./assets/aquadiogio.png",
+        "categoria": {
+            "nombre": "Fragancias",
+            "id": "fragancias"
+        },
+        "precio": 54055
+    },
+    {
+        "id": "fragancia-04",
+        "titulo": "Fragancia Cher gift 50ml",
+        "imagen": "./assets/cherRegalo.png",
+        "categoria": {
+            "nombre": "Fragancias",
+            "id": "fragancias"
+        },
+        "precio": 41606
+    },
+    {
+        "id": "protector-01",
+        "titulo": "Protector Solar Isdin FPS 99",
+        "imagen": "./assets/isdin99.png",
+        "categoria": {
+            "nombre": "Protectores Solares",
+            "id": "protectores"
+        },
+        "precio": 21606
+    },
+    {
+        "id": "protector-02",
+        "titulo": "Protector Solar Isdin FPS 50",
+        "imagen": "./assets/isdintres.png",
+        "categoria": {
+            "nombre": "Protectores Solares",
+            "id": "protectores"
+        },
+        "precio": 23606
+    },
+    {
+        "id": "protector-03",
+        "titulo": "Protector solar Isdin pediátrico",
+        "imagen": "./assets/larocche.png",
+        "categoria": {
+            "nombre": "Protectores Solares",
+            "id": "protectores"
+        },
+        "precio": 41606
+    },
+    {
+        "id": "protector-04",
+        "titulo": "Protector solar Eucerin FPS 50",
+        "imagen": "./assets/protectorsolar.png",
+        "categoria": {
+            "nombre": "Protectores Solares",
+            "id": "protectores"
+        },
+        "precio": 41606
+    },
+    {
+        "id": "serum-01",
+        "titulo": "Serum Niacinamida LRP",
+        "imagen": "./assets/vitc.png",
+        "categoria": {
+            "nombre": "Serums",
+            "id": "serums"
+        },
+        "precio": 71606
+    },
+    {
+        "id": "serum-02",
+        "titulo": "Serum Acnique",
+        "imagen": "./assets/cepage.png",
+        "categoria": {
+            "nombre": "Serums",
+            "id": "serums"
+        },
+        "precio": 41606
+    },
+    {
+        "id": "serum-03",
+        "titulo": "Serum Antipigmento",
+        "imagen": "./assets/serumeuc.png",
+        "categoria": {
+            "nombre": "Serums",
+            "id": "serums"
+        },
+        "precio": 41606
+    },
+    {
+        "id": "serum-04",
+        "titulo": "Serum Mineral 89",
+        "imagen": "./assets/mineral.png",
+        "categoria": {
+            "nombre": "Serums",
+            "id": "serums"
+        },
+        "precio": 41606
+    }
+]

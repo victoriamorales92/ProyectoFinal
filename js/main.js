@@ -1,128 +1,13 @@
-const productos = [
-    {
-        id: "fragancia-01",
-        titulo: "Fragancia Alejandro Sanz 50 ml",
-        imagen: "./assets/alesaenz.png",
-        categoria: {
-            nombre: "Fragancias",
-            id: "fragancias"
-        },
-        precio: 45052
-    },
-    {
-        id: "fragancia-02",
-        titulo: "Fragancia Antonio Banderas 100 ml",
-        imagen: "./assets/antoniob.png",
-        categoria: {
-            nombre: "Fragancias",
-            id: "fragancias"
-        },
-        precio: 49873
-    },
-    {
-        id: "fragancia-03",
-        titulo: "Fragancia Aqua di Gio",
-        imagen: "./assets/aquadiogio.png",
-        categoria: {
-            nombre: "Fragancias",
-            id: "fragancias"
-        },
-        precio: 54055
-    },
-    {
-        id: "fragancia-04",
-        titulo: "Fragancia Cher gift 50ml",
-        imagen: "./assets/cherRegalo.png",
-        categoria: {
-            nombre: "Fragancias",
-            id: "fragancias"
-        },
-        precio: 41606
-    },
-    {
-        id: "protector-01",
-        titulo: "Protector Solar Isdin FPS 99",
-        imagen: "./assets/isdin99.png",
-        categoria: {
-            nombre: "Protectores Solares",
-            id: "protectores"
-        },
-        precio: 21606
-    },
-    {
-        id: "protector-02",
-        titulo: "Protector Solar Isdin FPS 50",
-        imagen: "./assets/isdintres.png",
-        categoria: {
-            nombre: "Protectores Solares",
-            id: "protectores"
-        },
-        precio: 23606
-    },
-    {
-        id: "protector-03",
-        titulo: "Protector solar Isdin pediátrico",
-        imagen: "./assets/larocche.png",
-        categoria: {
-            nombre: "Protectores Solares",
-            id: "protectores"
-        },
-        precio: 41606
-    },
-    {
-        id: "protector-04",
-        titulo: "Protector solar Eucerin FPS 50",
-        imagen: "./assets/protectorsolar.png",
-        categoria: {
-            nombre: "Protectores Solares",
-            id: "protectores"
-        },
-        precio: 41606
-    },
-    {
-        id: "serum-01",
-        titulo: "Serum Niacinamida LRP",
-        imagen: "./assets/nicinamida.png",
-        categoria: {
-            nombre: "Serums",
-            id: "serums"
-        },
-        precio: 71606
-    },
-    {
-        id: "serum-02",
-        titulo: "Serum Acnique",
-        imagen: "./assets/cepage.png",
-        categoria: {
-            nombre: "Serums",
-            id: "serums"
-        },
-        precio: 41606
-    },
-    {
-        id: "serum-03",
-        titulo: "Serum Antipigmento",
-        imagen: "./assets/serum.png",
-        categoria: {
-            nombre: "Serums",
-            id: "serums"
-        },
-        precio: 41606
-    },
-    {
-        id: "serum-04",
-        titulo: "Serum Mineral 89",
-        imagen: "./assets/vichy.png",
-        categoria: {
-            nombre: "Serums",
-            id: "serums"
-        },
-        precio: 41606
-    }
-];
+let productos = [];
 
+fetch("./js/productos.json")
+    .then( response => response.json())
+    .then(data => {
+        productos = data;
+        mostrarProductos(productos)
+    })
 
-//  DOM
+// DOM
 const catalogoProductos = document.querySelector("#catalogo-productos");
 const todos = document.querySelector("#todos");
 const fragancias = document.querySelector("#fragancias");
@@ -133,44 +18,56 @@ const carritoProductos = document.querySelector("#carrito-productos");
 let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
 // Función para actualizar el contador del carrito
-
 function actualizarContadorCarrito() {
-    const contadorCarrito = document.querySelector('.numero'); 
-    contadorCarrito.textContent = carrito.length;
+    const contadorCarrito = document.querySelector('.numero');
+    const totalItems = carrito.reduce((sum, producto) => sum + producto.cantidad, 0);
+    contadorCarrito.textContent = totalItems;
 }
 
-// Función para agregar productos al carrito
-
+// Función para agregar productos al carrito o incrementar la cantidad si ya existe
 function agregarAlCarrito(idProducto) {
     const producto = productos.find(p => p.id === idProducto);
-    carrito.push(producto);
+    const productoEnCarrito = carrito.find(p => p.id === idProducto);
 
-    // Guardar en localStorage
+    if (productoEnCarrito) {
+        productoEnCarrito.cantidad++;
+    } else {
+        carrito.push({ ...producto, cantidad: 1 });
+    }
 
     localStorage.setItem('carrito', JSON.stringify(carrito));
-
-    // Actualizar el contador del carrito
-
     actualizarContadorCarrito();
-    mostrarProductosEnCarrito(); 
+    mostrarProductosEnCarrito();
+
+
+    // Toastify
+
+    Toastify({
+        text: "¡Genial! Tu producto ya está en el carrito. 🛒",
+        duration: 3000,
+        close: true,
+        gravity: "top", 
+        position: "right", 
+        backgroundColor: "#28a745",
+        stopOnFocus: true,
+        className: "toastify-custom" // Clase personalizada
+    }).showToast();
 }
 
-// Función para quitar productos del carrito
+// Función para decrementar la cantidad de productos en el carrito
 
-function quitarDelCarrito(index) {
-    carrito.splice(index, 1);
+function decrementarCantidad(idProducto) {
+    const productoEnCarrito = carrito.find(p => p.id === idProducto);
+
+    if (productoEnCarrito && productoEnCarrito.cantidad > 1) {
+        productoEnCarrito.cantidad--;
+    } else {
+        carrito = carrito.filter(p => p.id !== idProducto);
+    }
+
     localStorage.setItem('carrito', JSON.stringify(carrito));
-    mostrarProductosEnCarrito();
     actualizarContadorCarrito();
-}
-
-// Función para vaciar el carrito
-
-function vaciarCarrito() {
-    carrito = [];
-    localStorage.setItem('carrito', JSON.stringify(carrito));
     mostrarProductosEnCarrito();
-    actualizarContadorCarrito();
 }
 
 // Función para mostrar productos filtrados por categoría
@@ -202,51 +99,77 @@ function mostrarProductos(categoriaId = "") {
     // Añadir evento a cada botón de agregar al carrito
 
     document.querySelectorAll('.btn-agregar').forEach(button => {
-        button.addEventListener('click', function() {
+        button.addEventListener('click', function () {
             agregarAlCarrito(this.id);
         });
     });
 }
-
 // Función para mostrar productos en el carrito y calcular total
 
 function mostrarProductosEnCarrito() {
-    carritoProductos.innerHTML = ""; 
+    carritoProductos.innerHTML = "";
 
     if (carrito.length === 0) {
         carritoProductos.innerHTML = "<p>Tu carrito está vacío</p>";
     } else {
-        carrito.forEach((producto, index) => {
+        carrito.forEach((producto) => {
             const div = document.createElement("div");
             div.classList.add("producto-carrito");
+
             div.innerHTML = `
                 <p>${producto.titulo}</p>
                 <p>$${producto.precio}</p>
-                <button class="btn-quitar" data-index="${index}">Quitar</button>
+                <div class="cantidad">
+                    <p>Cantidad: ${producto.cantidad}</p>
+                    <div class="cantidad-buttons">
+                        <button class="btn-decrementar" data-id="${producto.id}">-</button>
+                        <button class="btn-incrementar" data-id="${producto.id}">+</button>
+                    </div>
+                </div>
+                <p>Total: $${(producto.precio * producto.cantidad).toLocaleString('es-AR')}</p>
             `;
             carritoProductos.appendChild(div);
         });
 
-        // Añadir evento para quitar productos
+        // Añadir evento para incrementar la cantidad
 
-        document.querySelectorAll('.btn-quitar').forEach(button => {
-            button.addEventListener('click', function() {
-                const index = this.getAttribute('data-index');
-                quitarDelCarrito(index); // Quitar producto al hacer clic
+        document.querySelectorAll('.btn-incrementar').forEach(button => {
+            button.addEventListener('click', function () {
+                const idProducto = this.getAttribute('data-id');
+                agregarAlCarrito(idProducto);
+            });
+        });
+
+        // Añadir evento para decrementar la cantidad
+
+        document.querySelectorAll('.btn-decrementar').forEach(button => {
+            button.addEventListener('click', function () {
+                const idProducto = this.getAttribute('data-id');
+                decrementarCantidad(idProducto);
             });
         });
     }
 
-    const total = carrito.reduce((sum, producto) => sum + producto.precio, 0);
+    const total = carrito.reduce((sum, producto) => sum + producto.precio * producto.cantidad, 0);
     totalCarrito.textContent = total.toLocaleString('es-AR');
-    
 
     // botones seguir comprando y vaciar carrito
 
     agregarBotonesCarrito();
 }
 
+
+// Función para vaciar el carrito
+
+function vaciarCarrito() {
+    carrito = [];
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+    mostrarProductosEnCarrito();
+    actualizarContadorCarrito();
+}
+
 // Función para agregar botones de "Seguir Comprando" y "Vaciar Carrito"
+
 function agregarBotonesCarrito() {
     const botonSeguirComprando = document.createElement("button");
     botonSeguirComprando.textContent = "Seguir Comprando";
@@ -260,7 +183,32 @@ function agregarBotonesCarrito() {
         botonVaciarCarrito.classList.add("btn-vaciar");
         carritoProductos.appendChild(botonVaciarCarrito);
         botonVaciarCarrito.addEventListener("click", vaciarCarrito);
+
+
+        const botonComprar = document.createElement("button");
+        botonComprar.textContent = "Comprar";
+        botonComprar.classList.add("btn-comprar");
+        carritoProductos.appendChild(botonComprar);
+        botonComprar.addEventListener("click", realizarCompra);
     }
+}
+
+
+// Función para realizar la compra con sweet alert
+
+function realizarCompra() {
+    Swal.fire({
+        icon: 'success',
+        title: '¡Gracias por tu compra ♥ !',
+        text: 'Tu pedido está en proceso.',
+        showConfirmButton: true
+    });
+
+    // Vaciar el carrito después de la compra
+
+    vaciarCarrito();
+    actualizarContadorCarrito();
+    mostrarProductosEnCarrito();
 }
 
 // Función para cerrar el carrito 
@@ -276,28 +224,28 @@ mostrarProductos();
 // función para mostrar los productos por categoria
 
 todos.addEventListener("click", (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
     mostrarProductos(); // Mostrar todos los productos
 });
 
 fragancias.addEventListener("click", (e) => {
     e.preventDefault();
-    mostrarProductos("fragancias"); // fragancias
+    mostrarProductos("fragancias"); // Mostrar fragancias
 });
 
 protectores.addEventListener("click", (e) => {
     e.preventDefault();
-    mostrarProductos("protectores"); // protectores
+    mostrarProductos("protectores"); // Mostrar protectores solares
 });
 
 serums.addEventListener("click", (e) => {
     e.preventDefault();
-    mostrarProductos("serums"); // solo serums
+    mostrarProductos("serums"); // Mostrar serums
 });
 
 // Inicializar el contador del carrito 
 
 document.addEventListener('DOMContentLoaded', () => {
     actualizarContadorCarrito();
-    mostrarProductosEnCarrito(); // 
+    mostrarProductosEnCarrito(); 
 });
