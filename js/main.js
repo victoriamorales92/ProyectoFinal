@@ -48,7 +48,7 @@ function agregarAlCarrito(idProducto) {
     // Toastify
 
     Toastify({
-        text: "¡Genial! Tu producto ya está en el carrito. 🛒",
+        text: "¡Genial! Tu producto ya está en el carrito 🛒",
         duration: 1000,
         close: true,
         gravity: "top", 
