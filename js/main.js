@@ -1,11 +1,16 @@
 let productos = [];
 
-fetch("./js/productos.json")
-    .then( response => response.json())
-    .then(data => {
-        productos = data;
-        mostrarProductos(productos)
-    })
+document.addEventListener('DOMContentLoaded', () => {
+    fetch("../js/productos.json")
+        .then(response => response.json())
+        .then(data => {
+            productos = data;
+            mostrarProductos(); // 
+        });
+
+    actualizarContadorCarrito();
+    mostrarProductosEnCarrito(); 
+});
 
 // DOM
 const catalogoProductos = document.querySelector("#catalogo-productos");
@@ -44,7 +49,7 @@ function agregarAlCarrito(idProducto) {
 
     Toastify({
         text: "¡Genial! Tu producto ya está en el carrito. 🛒",
-        duration: 3000,
+        duration: 1000,
         close: true,
         gravity: "top", 
         position: "right", 
@@ -131,7 +136,7 @@ function mostrarProductosEnCarrito() {
             carritoProductos.appendChild(div);
         });
 
-        // Añadir evento para incrementar la cantidad
+        // botón incrementar
 
         document.querySelectorAll('.btn-incrementar').forEach(button => {
             button.addEventListener('click', function () {
@@ -140,7 +145,7 @@ function mostrarProductosEnCarrito() {
             });
         });
 
-        // Añadir evento para decrementar la cantidad
+        // botón decremntar
 
         document.querySelectorAll('.btn-decrementar').forEach(button => {
             button.addEventListener('click', function () {
@@ -168,7 +173,7 @@ function vaciarCarrito() {
     actualizarContadorCarrito();
 }
 
-// Función para agregar botones de "Seguir Comprando" y "Vaciar Carrito"
+// Función para agregar botones de seguir comprando y vaciar carrito
 
 function agregarBotonesCarrito() {
     const botonSeguirComprando = document.createElement("button");
@@ -199,7 +204,7 @@ function agregarBotonesCarrito() {
 function realizarCompra() {
     Swal.fire({
         icon: 'success',
-        title: '¡Gracias por tu compra ♥ !',
+        title: 'Gracias por tu compra ♥',
         text: 'Tu pedido está en proceso.',
         showConfirmButton: true
     });
